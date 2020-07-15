@@ -3,4 +3,12 @@
 </div>
 
 <h1 class='text-center mt-4'>Listing All Notes</h1>
+<div class="flickr_pagination">
+	<%= will_paginate @notes, :container => false %>
+</div>
+
 <%= render 'note' %>
+
+<div class="flickr_pagination mb-4">
+	<%= will_paginate @notes, :container => false %>
+</div>

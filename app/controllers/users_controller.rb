@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def show
-		@notes = @user.notes
+		@notes = @user.notes.paginate(page: params[:page], per_page: 5)
 	end
 
 	def new
