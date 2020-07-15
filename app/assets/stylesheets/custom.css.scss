@@ -7,6 +7,38 @@
 	font-size: 2rem;
 }
 
-h1 {
+.nav-link {
+	color: white !important;
+}
+
+#logo::hover {
+	color: white;
+	text-decoration: none;
+}
+
+#home-container {
+	margin-top: 25px;
+}
+
+.jumbotron {
+	background-image: asset-url('hero-image.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 425px;
 	color: black;
+}
+
+.jumbotron h1 {
+	text-align: center;
+	margin-top: 75px;
+	margin-bottom: 30px;
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+
+.btn-lg {
+	font-size: 2em;
+	background-color: #92b170;
+	outline: none;
 }
