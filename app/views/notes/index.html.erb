@@ -3,6 +3,9 @@
 </div>
 
 <h1 class='text-center mt-4'><%= current_user.username %>'s Notes</h1>
+<div class="row justify-content-md-center">
+	<%= link_to "New Note", new_note_path, class: "btn btn-outline-success" %>
+</div>
 <div class="flickr_pagination">
 	<%= will_paginate @notes, :container => false %>
 </div>

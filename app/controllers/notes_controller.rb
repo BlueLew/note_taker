@@ -27,6 +27,10 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    if @note.title.empty?
+      @note.title = @note.body[0...30]
+    end
+    
     @note.user = current_user
 
     respond_to do |format|
