@@ -2,7 +2,7 @@
   <p id="notice"><%= notice %></p>
 </div>
 
-<h1 class='text-center mt-4'>Listing All Notes</h1>
+<h1 class='text-center mt-4'><%= current_user.username %>'s Notes</h1>
 <div class="flickr_pagination">
 	<%= will_paginate @notes, :container => false %>
 </div>

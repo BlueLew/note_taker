@@ -1,10 +1,12 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :require_user
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.paginate(page: params[:page], per_page: 5)
+    @notes = current_user.notes.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /notes/1
@@ -25,7 +27,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
-    @note.user = User.first
+    @note.user = current_user
 
     respond_to do |format|
       if @note.save
@@ -63,13 +65,20 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.require(:note).permit(:title, :body)
+  # Only allow a list of trusted parameters through.
+  def note_params
+    params.require(:note).permit(:title, :body)
+  end
+
+  def require_same_user
+    if current_user != @note.user
+      flash[:alert] = "You can only edit or delete your own note."
+      redirect_to notes_path
     end
+  end
 end
