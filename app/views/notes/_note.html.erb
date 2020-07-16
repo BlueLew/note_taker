@@ -4,6 +4,7 @@
       <div class="col-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
+            <%= link_to gravatar_for(note.user), user_path(note.user) %>
             by <%= note.user.username %>
           </div>
           <div class="card-body">
@@ -16,8 +17,8 @@
               class: "btn btn-outline-danger" %>
           </div>
           <div class="card-footer text-muted">
-            Created <%= time_ago_in_words(note.created_at) %> ago, 
-            Edited <%= time_ago_in_words(note.updated_at) %> ago
+            Created <%= note.created_at.strftime("%B %d, %Y at %l:%M%P") %> --
+            Edited <%= note.updated_at.strftime("%B %d, %Y, %l:%M%P") %>
           </div>
         </div>
       </div>
